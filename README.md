@@ -15,7 +15,7 @@
 
 ---------------------------------------------------------------------------------------------------------
 
-This repo contains  Norah, Ghadah, Wardah attempts to solve the project problem.
+This repo contains  Norah, [Ghadah](https://github.com/ghada233), Wardah attempts to solve the project problem.
 
 A project submitted for CS424 – Introduction to Parallel Computing
 
