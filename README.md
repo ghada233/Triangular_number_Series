@@ -7,7 +7,7 @@
 ### In this repo we define four soultion of Triangular number Series:
 1- [Sequential In Java.](https://github.com/NorahFahad/Triangular_number_Series/blob/main/TriangularS.java)
 
-2- [Parallel In Java. Share ] (https://github.com/NorahFahad/Triangular_number_Series/blob/main/Triangular.java)
+2- [Parallel In Java. Share](https://github.com/NorahFahad/Triangular_number_Series/blob/main/Triangular.java)
 
 3- [Parallel In C++ use OpenMP. Share](https://github.com/NorahFahad/Triangular_number_Series/blob/main/TiangularOpenMP.cpp)
 
