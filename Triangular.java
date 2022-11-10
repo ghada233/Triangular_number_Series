@@ -6,16 +6,18 @@ public class Triangular{
         try (Scanner input = new Scanner(System.in)) {
 
             System.out.println("**Triangular number Series with java**");
-            System.out.println("The number of threads is (4)");
+            System.out.println("Enter number of threads ");
+             int Threads_Count=input.nextInt(); //read the threads from the user
             System.out.print("Enter positive number (n): ");
             int n=input.nextInt(); //read the number from the user
+           
 
-            ExecutorService executor=Executors.newFixedThreadPool(4); //create thread pool with 4 threads
+            ExecutorService executor=Executors.newFixedThreadPool(Threads_Count); //create thread pool with 4 threads
 
             long startTime =System.currentTimeMillis();//calculate current time for the start time
 
             for(int threadRank=0; threadRank<4; threadRank++){
-                executor.execute(new Triangular_number_Series(threadRank, n)); //execute each thread
+                executor.execute(new Triangular_number_Series(threadRank, n,Threads_Count)); //execute each thread
             }
 
             executor.shutdown();//shutdown the executor
@@ -32,15 +34,17 @@ public class Triangular{
 class Triangular_number_Series implements Runnable {
     int threadRank;
     int n;
+    int Threads_Count;
 
-    Triangular_number_Series(int threadRank, int n){
+    Triangular_number_Series(int threadRank, int n,int Threads_Count){
         this.n=n;
         this.threadRank=threadRank;
+        this.Threads_Count=Threads_Count;
     }
 
     @Override
     public void run() {
-        for(int i=threadRank; i<n; i+=4){
+        for(int i=threadRank; i<n; i+=Threads_Count){
             System.out.printf("(Thread:%d) (Itration:%d) (Dots:%d)\n", threadRank, i, (i*(i+1))/2);//each thread print its rank and iteration it take and the number of dots in the triangular
         }//end for loop
     }//end run()
