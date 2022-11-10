@@ -6,6 +6,7 @@
 int main(void) {
 	int my_rank, comm_sz;
 	int n;
+	
 
 	MPI_Init(NULL, NULL); //Initialize MPI
 	MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
@@ -13,12 +14,16 @@ int main(void) {
 
 	if (my_rank == 0) { //process 0 print
 		printf("**Triangular number Series with MPI**\n");
+		printf("Enter number (comm_sz): ");
+		fflush(stdout); //flush everything before reading n from user
+		scanf_s("%d", &comm_sz); //prosees 0 read the number n from user
 		printf("Enter number (n): ");
 		fflush(stdout); //flush everything before reading n from user
 		scanf_s("%d", &n); //prosees 0 read the number n from user
 	}
 
 	MPI_Bcast(&n,1,MPI_INT,0, MPI_COMM_WORLD); //broadcast the number n from process 0 to all processes in the communicator
+	MPI_Bcast(&comm_sz,1,MPI_INT,0, MPI_COMM_WORLD); //broadcast the number n from process 0 to all processes in the communicator
 
 	double local_start, local_finish, local_elapsed, elapsed; //declare variables to caculate time 
 
@@ -26,7 +31,7 @@ int main(void) {
 
 	local_start = MPI_Wtime(); //each process calculate its local start time
 
-	for (int i = my_rank; i < n; i+=4) {//i is jump 4 each time to each process
+	for (int i = my_rank; i < n; i+=comm_sz) {//i is jump 4 each time to each process
 		printf("(Process:%d) (Itration:%d) (Dots:%d)\n", my_rank, i, i * (i + 1) / 2); //each process prints its rank, the iteration it takes and the number of dots
 	}
 
